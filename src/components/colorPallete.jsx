@@ -66,7 +66,7 @@ export default function ColorPallete(props) {
         bottom: "0",
         width: "100%",
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "start",
         backgroundColor: "white",
       }}
     >
@@ -80,7 +80,7 @@ export default function ColorPallete(props) {
       </button>
       <div
         style={{
-          width: "50%",
+          // width: "50%",
           display: "grid",
           gridTemplateColumns: "repeat(9, 1fr)",
           backgroundColor: "white",
