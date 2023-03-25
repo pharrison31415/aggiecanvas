@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CanvasComponent } from "@/components/canvasComponent";
 import { ColorBar } from "@/components/colorBar";
+import { Toolbar } from "@/components/toolbar";
 import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
 
@@ -51,6 +52,7 @@ export default function Canvas() {
   return (
     <>
       {/* <CanvasComponent /> */}
+      <Toolbar />
       <CheckboxArray grid={grid} />
       {/* <ColorBar /> */}
     </>
