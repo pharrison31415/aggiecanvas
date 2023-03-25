@@ -17,30 +17,24 @@ function ToolbarButtons() {
 
     return (
         <div style={{position: "absolute", right: "0%", paddingRight: "50px"}}>
-            <button 
-                onClick={handleLogout} 
-                name="logout"
-                style={{
-                    backgroundColor: "#1E90FF",
-                    color: "white",
-                    textAlign: "center",
-                    borderRadius: "50%"
-                }}    
-            >
-                Logout
+              <button onClick={handleLogout} name="logout">
+                <img
+                   src={"/images/logoutButton.jpeg"}
+                   alt="Logout button"
+                   width="25px"
+                   height="25px"
+                   priority 
+                />
             </button><br />
 
-            <button 
-                onClick={handleEdit} 
-                name="logout"
-                style={{
-                    backgroundColor: "#4FFFB0",
-                    color: "white",
-                    textAlign: "center",
-                    borderRadius: "50%"
-                }}    
-            >
-                Logout
+            <button onClick={handleEdit} name="edit">
+                <img
+                   src={"/images/editButton.jpeg"}
+                   alt="Edit button"
+                   width="25px"
+                   height="25px"
+                   priority 
+                />
             </button>
         </div>
     )
