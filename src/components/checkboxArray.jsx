@@ -10,10 +10,10 @@ export default function CheckboxArray(props) {
           <GridCell
             focus={props.focus}
             setFocus={props.setFocus}
-            key={r * props.grid.length + c}
-            cellNum={r * props.grid.length + c}
-            row={r}
-            col={c}
+            key={parseInt(r * props.grid[0].length) + parseInt(c)}
+            cellNum={parseInt(r * props.grid[0].length) + parseInt(c)}
+            r={r}
+            c={c}
             cellColor={props.grid[r][c]}
             setPalleteOpen={props.setPalleteOpen}
           />
@@ -30,6 +30,7 @@ export default function CheckboxArray(props) {
         overflow: "auto",
         whiteSpace: "nowrap",
         backgroundColor: "black",
+        marginBottom: props.palleteOpen ? "190px" : "0px",
       }}
     >
       {generateCells()}

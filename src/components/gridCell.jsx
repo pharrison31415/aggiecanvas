@@ -9,7 +9,7 @@ export default function GridCell(props) {
       }}
     >
       <input
-        checked={props.focus === props.cellNum || props.cell != "#ffffff"}
+        checked={props.focus === props.cellNum}
         onChange={() => {
           if (props.focus != props.cellNum) {
             props.setFocus(props.cellNum);
