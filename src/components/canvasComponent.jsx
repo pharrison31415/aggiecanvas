@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export class CanvasComponent extends Component {
-    render() {}
+  render() {}
 }
- 
+
 export default CanvasComponent;
