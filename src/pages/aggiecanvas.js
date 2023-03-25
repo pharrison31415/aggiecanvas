@@ -3,6 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
 import ColorPallete from "@/components/colorPallete";
+import Toolbar from "@/components/toolbar";
 
 export default function Canvas() {
   const [grid, setGrid] = useState([]);
@@ -58,6 +59,7 @@ export default function Canvas() {
         setFocus={setFocus}
         setPalleteOpen={setPalleteOpen}
       />
+      <Toolbar />
       <ColorPallete
         focus={focus}
         setFocus={setFocus}
