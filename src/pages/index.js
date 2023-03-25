@@ -31,7 +31,6 @@ function LoadImage() {
         alt="USU Bull Logo"
         width="400px"
         height="400px"
-        priority // lazy ,eager
       />
     </div>
   );
@@ -72,7 +71,6 @@ function Rules() {
 }
 
 function SignIn() {
-  const [inputs, setInputs] = useState({});
   const [isDisabled, setIsDisabled] = useState(true);
   const [checked, setChecked] = useState(false);
   const [email, setEmail] = useState("");
@@ -105,17 +103,14 @@ function SignIn() {
       <h2>Login using your USU Eamil:</h2>
       <form
         onSubmit={handleSubmit}
-        className="form-control-feedback has-success has-warning"
       >
-        <label>
-          Email:
+        <label htmlFor="email">Email: </label>
           <input
             type="email"
             name="email"
             value={email}
             onChange={emailChange}
           />
-        </label>
         <br />
         {/* <label>Password: 
                     <input
@@ -129,8 +124,7 @@ function SignIn() {
           <input
             type="checkbox"
             name="checkBox"
-            className="checkbox"
-            value={inputs.checkBox || false}
+            value={checked}
             onClick={onCheckBoxClick}
           />
           &nbsp;&nbsp;&nbsp;I have read and agree to abide by the rules listed
