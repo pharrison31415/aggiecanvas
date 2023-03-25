@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { CanvasComponent } from "@/components/canvasComponent";
 import { ColorBar } from "@/components/colorBar";
 import "bootstrap/dist/css/bootstrap.css";
+import CheckboxArray from "@/components/checkboxArray";
 
 export default function Canvas() {
+  const [grid, setGrid] = useState([]);
+
   useEffect(() => {
     axios.get("/api/grid-snapshot").then((gridResponse) => {
       let snapshot = gridResponse.data.snapshot;
@@ -19,6 +22,7 @@ export default function Canvas() {
             editingGrid[u.row][u.column] = u.color;
           }
           window.grid = editingGrid;
+          setGrid(editingGrid);
         });
     });
   }, []);
@@ -36,6 +40,7 @@ export default function Canvas() {
             console.log(u);
             window.grid[u.row][u.column] = u.color;
           }
+          setGrid(window.grid);
         })
         .catch((error) => {
           console.log(error);
@@ -45,7 +50,8 @@ export default function Canvas() {
 
   return (
     <>
-      <CanvasComponent />
+      {/* <CanvasComponent /> */}
+      <CheckboxArray grid={grid} />
       <ColorBar />
     </>
   );
