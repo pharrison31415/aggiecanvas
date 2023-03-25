@@ -16,9 +16,9 @@ export default function Home() {
       <LoadImage />
       <AboutText />
       <Rules />
-      <div className="container">
+      {/* <div className="container">
         <SignIn />
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -62,10 +62,6 @@ function Rules() {
           offensive images.
         </li>
       </ul>
-      <p className="w-50">
-        If participants fail to abide by these rules they will be banned for 12
-        hours. If Participant is banned 3 times they will be banned permanently.
-      </p>
     </div>
   );
 }
