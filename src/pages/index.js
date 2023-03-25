@@ -1,137 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.css";
+import CheckboxArray from "@/components/checkboxArray";
+import ColorPallete from "@/components/colorPallete";
+import Toolbar from "@/components/toolbar";
 
-export default function Home() {
-  return (
-    <div
-      className="container-fluid bgWrap p-5"
-      style={{
-        backgroundColor: "white",
-        color: "#002D62",
-        fontFamily: "Georgia, serif",
-        fontWeight: "bolder",
-        fontSize: "20px",
-      }}
-    >
-      <h1>Aggie Canvas</h1>
-      <LoadImage />
-      <AboutText />
-      <Rules />
-      <div className="container">
-        <SignIn />
-      </div>
-    </div>
-  );
-}
+export default function Canvas() {
+  const [grid, setGrid] = useState([]);
+  const [changes, setChanges] = useState(0);
 
-function LoadImage() {
+  useEffect(() => {
+    axios.get("/api/grid-snapshot").then((gridResponse) => {
+      let snapshot = gridResponse.data.snapshot;
+      let editingGrid = snapshot.grid;
+
+      axios
+        .get("/api/latest-updates", {
+          params: { "last-update": snapshot.lastUpdate },
+        })
+        .then((updatesResponse) => {
+          for (let u of updatesResponse.data.updates) {
+            editingGrid[u.row][u.column] = u.color;
+          }
+          window.grid = editingGrid;
+          setGrid(editingGrid);
+        });
+    });
+  }, []);
+
+  useEffect(() => {
+    window.lastUpdate = "2030-01-01 00:01:00";
+    setInterval(() => {
+      axios
+        .get("/api/latest-updates", {
+          params: { "last-update": window.lastUpdate },
+        })
+        .then((updatesResponse) => {
+          window.lastUpdate = updatesResponse.data.lastUpdate;
+          for (let u of updatesResponse.data.updates) {
+            // console.log(u);
+            setChanges((c) => c + 1);
+            window.grid[u.row][u.column] = u.color;
+          }
+          setGrid(window.grid);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {}, [changes]);
+
+  const [palleteOpen, setPalleteOpen] = useState(false);
+  const [focus, setFocus] = useState(-1);
+
   return (
-    <div style={{ position: "absolute", right: "0%", paddingRight: "50px" }}>
-      <img
-        src={"/images/aggieBull.png"}
-        alt="USU Bull Logo"
-        width="400px"
-        height="400px"
+    <>
+      <CheckboxArray
+        grid={grid}
+        focus={focus}
+        setFocus={setFocus}
+        palleteOpen={palleteOpen}
+        setPalleteOpen={setPalleteOpen}
       />
-    </div>
-  );
-}
-
-function AboutText() {
-  return (
-    <p className="w-50">
-      Aggie Canvas is a campus wide event that will allow USU student to create
-      art together. Once students have logged on this will be able to color one
-      pixel a minute on an originally blank canvas. This project will allow
-      students to work together or alone to create images of there choice.
-    </p>
-  );
-}
-
-function Rules() {
-  return (
-    <div>
-      <h2>Rules: </h2>
-      <ul className="w-50">
-        <li>All participants must be current students in USU.</li>
-        <li>
-          Participants may not use their pixels to write out any profane and/or
-          offensive language.
-        </li>
-        <li>
-          Participants may not use their pixels to create inapropriate, crud, or
-          offensive images.
-        </li>
-      </ul>
-      <p className="w-50">
-        If participants fail to abide by these rules they will be banned for 12
-        hours. If Participant is banned 3 times they will be banned permanently.
-      </p>
-    </div>
-  );
-}
-
-function SignIn() {
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [checked, setChecked] = useState(false);
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-
-  const onCheckBoxClick = () => {
-    setChecked(!checked);
-    return handleSubmit();
-  };
-
-  const emailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const validateEmail = () => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
-    } else {
-      setError("");
-    }
-  };
-
-  const handleSubmit = () => {
-    return checked ? setIsDisabled(true) : setIsDisabled(false);
-  };
-
-  return (
-    <div>
-      <h2>Login using your USU Eamil:</h2>
-      <form
-        onSubmit={handleSubmit}
-      >
-        <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={emailChange}
-          />
-        <br />
-        {/* <label>Password: 
-                    <input
-                      type="text"
-                      name="password"
-                      value={inputs.password || ""}
-                      onChange={handleChange}
-                    ></input>
-                </label> */}
-        <p>
-          <input
-            type="checkbox"
-            name="checkBox"
-            value={checked}
-            onClick={onCheckBoxClick}
-          />
-          &nbsp;&nbsp;&nbsp;I have read and agree to abide by the rules listed
-          above.
-        </p>
-        <input type="submit" value="Submit" disabled={isDisabled} />
-      </form>
-    </div>
+      {/* <Toolbar /> */}
+      <ColorPallete
+        grid={grid}
+        focus={focus}
+        setFocus={setFocus}
+        palleteOpen={palleteOpen}
+        setPalleteOpen={setPalleteOpen}
+      />
+    </>
   );
 }
