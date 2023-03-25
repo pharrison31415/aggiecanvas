@@ -4,6 +4,7 @@ import { CanvasComponent } from "@/components/canvasComponent";
 import { ColorBar } from "@/components/colorBar";
 import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
+import ColorPallete from "@/components/colorPallete";
 
 export default function Canvas() {
   const [grid, setGrid] = useState([]);
@@ -48,11 +49,21 @@ export default function Canvas() {
     }, 2000);
   }, []);
 
+  const [palleteOpen, setPalleteOpen] = useState(false);
+  const [focusedCell, setFocusedCell] = useState(-1);
+
   return (
     <>
-      {/* <CanvasComponent /> */}
-      <CheckboxArray grid={grid} />
-      {/* <ColorBar /> */}
+      <button
+        onClick={() => {
+          setPalleteOpen(!palleteOpen);
+          console.log(!palleteOpen);
+        }}
+      >
+        Toggle
+      </button>
+      <CheckboxArray grid={grid} setPalleteOpen={setPalleteOpen} />
+      <ColorPallete palleteOpen={palleteOpen} setPalleteOpen={setPalleteOpen} />
     </>
   );
 }

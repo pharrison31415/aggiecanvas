@@ -1,17 +1,33 @@
 import GridCell from "./gridCell";
 
 export default function CheckboxArray(props) {
-  return (
-    <div style={{ overflow: "auto", whiteSpace: "nowrap" }}>
-      {props.grid.map((row) => {
-        return (
-          <div>
-            {row.map((cell) => {
-              return <GridCell />;
-            })}
-          </div>
+  const generateCells = () => {
+    let array = [];
+    for (let r in props.grid) {
+      let row = [];
+      for (let c in props.grid[r]) {
+        row.push(
+          <GridCell
+            key={r * props.grid.length + c}
+            cellNum={r * props.grid.length + c}
+            setPalleteOpen={props.setPalleteOpen}
+          />
         );
-      })}
+      }
+      array.push(<div key={r}>{row}</div>);
+    }
+    return array;
+  };
+
+  return (
+    <div
+      style={{
+        overflow: "auto",
+        whiteSpace: "nowrap",
+        backgroundColor: "black",
+      }}
+    >
+      {generateCells()}
     </div>
   );
 }
