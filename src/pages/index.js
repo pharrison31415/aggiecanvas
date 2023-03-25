@@ -1,9 +1,7 @@
 import { useState } from "react";
-import Image from "next/image";
-import aggieBull from 'public/images/aggieBull.png'
 
 export default function Home() {
-  return (<div className="container-fluid text-light bgWrap" style={{backgroundColor: "#000057"}}>
+  return (<div className="container-fluid bgWrap p-5" style={{backgroundColor: "white", color: "#002D62", fontFamily: "Georgia, serif", fontWeight: "bolder", fontSize: "20px"}}>
             <h1>Aggie Canvas</h1>
             <LoadImage />
             <AboutText />
@@ -17,12 +15,12 @@ export default function Home() {
 
 function LoadImage() {
   return (
-    <div>
-      <image
-        src={aggieBull}
+    <div style={{position: "absolute", right: "0%"}}>
+      <img
+        src={"/images/aggieBull.png"}
         alt="USU Bull Logo"
-        width="250px"
-        height="250px"
+        width="400px"
+        height="400px"
         priority // lazy ,eager
       />
     </div>
