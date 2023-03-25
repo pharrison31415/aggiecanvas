@@ -3,7 +3,7 @@ export default function Toolbar() {
         <div>
             <ToolbarButtons />
         </div>
-    )
+    );
 }
 
 function ToolbarButtons() {

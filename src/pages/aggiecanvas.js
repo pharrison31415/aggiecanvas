@@ -52,7 +52,7 @@ export default function Canvas() {
   return (
     <>
       {/* <CanvasComponent /> */}
-      <Toolbar />
+      {/* <Toolbar /> */}
       <CheckboxArray grid={grid} />
       {/* <ColorBar /> */}
     </>
