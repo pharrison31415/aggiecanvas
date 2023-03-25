@@ -1,7 +1,6 @@
 import { prisma } from "../../../utils/db-client";
 
 export default async (req, res) => {
-  console.log(req.body);
   const { row, column, color } = req.body;
 
   await prisma.update.create({

@@ -28,7 +28,7 @@ export default function Canvas() {
   }, []);
 
   useEffect(() => {
-    window.lastUpdate = "2030-01-01 00:00:00";
+    window.lastUpdate = "2030-01-01 00:01:00";
     setInterval(() => {
       axios
         .get("/api/latest-updates", {
