@@ -1,3 +1,5 @@
+import GridCell from "./gridCell";
+
 export default function CheckboxArray(props) {
   return (
     <>
@@ -5,7 +7,7 @@ export default function CheckboxArray(props) {
         return (
           <div>
             {row.map((cell) => {
-              return <input className="grid-cell" type="checkbox" />;
+              return <GridCell />;
             })}
           </div>
         );
