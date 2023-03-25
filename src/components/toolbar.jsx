@@ -15,7 +15,6 @@ export default function Toolbar() {
           alt="Logout button"
           width="35px"
           height="35px"
-          priority
         />
       </button>
       <br />
@@ -25,7 +24,6 @@ export default function Toolbar() {
           alt="Edit button"
           width="35px"
           height="35px"
-          priority
         />
       </button>
     </div>

@@ -12,6 +12,9 @@ export default function CheckboxArray(props) {
             setFocus={props.setFocus}
             key={r * props.grid.length + c}
             cellNum={r * props.grid.length + c}
+            row={r}
+            col={c}
+            cellColor={props.grid[r][c]}
             setPalleteOpen={props.setPalleteOpen}
           />
         );

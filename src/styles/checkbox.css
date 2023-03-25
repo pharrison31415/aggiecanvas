@@ -27,9 +27,9 @@
 }
 
 .container:hover input ~ .checkmark {
-  background-color: #ddd;
+  background-color: #e2e2e2 !important;
 }
 
-.container input:checked ~ .checkmark {
-  background-color: #ccc;
+.container input:checked ~ .selected {
+  background-color: #cecece !important;
 }

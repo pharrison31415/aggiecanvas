@@ -9,7 +9,7 @@ export default function GridCell(props) {
       }}
     >
       <input
-        checked={props.focus === props.cellNum}
+        checked={props.focus === props.cellNum || props.cell != "#ffffff"}
         onChange={() => {
           if (props.focus != props.cellNum) {
             props.setFocus(props.cellNum);
@@ -21,7 +21,12 @@ export default function GridCell(props) {
         }}
         type="checkbox"
       />
-      <span className="checkmark"></span>
+      <span
+        style={{ backgroundColor: props.cellColor }}
+        className={
+          props.focus === props.cellNum ? "checkmark selected" : "checkmark"
+        }
+      ></span>
     </label>
   );
 }
