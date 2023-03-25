@@ -7,5 +7,5 @@ export default async (req, res) => {
     },
   });
 
-  res.status(200).json({ updates });
+  res.status(200).json({ updates, lastUpdate: new Date().toISOString() });
 };

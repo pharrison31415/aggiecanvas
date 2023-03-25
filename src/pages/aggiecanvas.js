@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 export default function Canvas() {
-  const [mainGrid, setMainGrid] = useState([]);
-
   useEffect(() => {
     axios.get("/api/grid-snapshot").then((gridResponse) => {
       let snapshot = gridResponse.data.snapshot;
@@ -14,13 +12,32 @@ export default function Canvas() {
           params: { "last-update": snapshot.lastUpdate },
         })
         .then((updatesResponse) => {
-          let updates = updatesResponse.data.updates;
-          for (let u of updates) {
+          for (let u of updatesResponse.data.updates) {
             editingGrid[u.row][u.column] = u.color;
           }
-          setMainGrid(editingGrid);
+          window.grid = editingGrid;
         });
     });
+  }, []);
+
+  useEffect(() => {
+    window.lastUpdate = "2030-01-01 00:00:00";
+    setInterval(() => {
+      axios
+        .get("/api/latest-updates", {
+          params: { "last-update": window.lastUpdate },
+        })
+        .then((updatesResponse) => {
+          window.lastUpdate = updatesResponse.data.lastUpdate;
+          for (let u of updatesResponse.data.updates) {
+            console.log(u);
+            window.grid[u.row][u.column] = u.color;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 2000);
   }, []);
 
   return <div>HELLO</div>;
