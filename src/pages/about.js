@@ -40,9 +40,9 @@ function AboutText() {
   return (
     <p className="w-50">
       Aggie Canvas is a campus wide event that will allow USU student to create
-      art together. Once students have logged on this will be able to color one
-      pixel a minute on an originally blank canvas. This project will allow
-      students to work together or alone to create images of there choice.
+      art together. Students will be able to color one pixel at a time on a
+      canvas together. This project will allow students to work together or
+      alone to create images of there choice.
     </p>
   );
 }
