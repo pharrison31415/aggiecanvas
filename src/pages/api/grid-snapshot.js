@@ -1,4 +1,4 @@
-import { prisma } from "../../utils/db-client";
+import { prisma } from "../../../utils/db-client";
 
 export default async (req, res) => {
   const grid = await prisma.gridSnapshot.findFirst({
