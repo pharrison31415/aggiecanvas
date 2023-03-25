@@ -7,7 +7,7 @@ export class CanvasComponent extends Component {
 
   can;
   ctx;
-  numofcells = 100;
+  numofcells = 150;
   cellsize = 10;
   DPR;
 
