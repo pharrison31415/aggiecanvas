@@ -4,30 +4,33 @@ import ColorCell from "./colorCell";
 
 export default function ColorPallete(props) {
   const colors = [
-    "#FFFFFF",
     "#000000",
-    "#FF0000",
-    "#0000FF",
-    "#008000",
-    "#FFFF00",
-    "#800080",
-    "#FFA500",
-    "#FFC00B",
-    "#800000",
-    "#00FFFF",
-    "#A52A2A",
-    "#D2B48C",
-    "#EE82EE",
-    "#008080",
-    "#FF00FF",
-    "#87CEFA",
-    "#F08080",
-    "#FFD700",
-    "#FF1493",
-    "#8B0000",
-    "#00008B",
-    "#080808",
-    "#A9A9A9",
+    "#000088",
+    "#0000ff",
+    "#008800",
+    "#008888",
+    "#0088ff",
+    "#00ff00",
+    "#00ff88",
+    "#00ffff",
+    "#880000",
+    "#880088",
+    "#8800ff",
+    "#888800",
+    "#888888",
+    "#8888ff",
+    "#88ff00",
+    "#88ff88",
+    "#88ffff",
+    "#ff0000",
+    "#ff0088",
+    "#ff00ff",
+    "#ff8800",
+    "#ff8888",
+    "#ff88ff",
+    "#ffff00",
+    "#ffff88",
+    "#ffffff",
   ];
 
   const [focus, setFocus] = useState(-1);
@@ -36,8 +39,8 @@ export default function ColorPallete(props) {
   const buildColorCells = () => {
     let array = [];
     for (let r = 0; r < 3; r++) {
-      for (let c = 0; c < 8; c++) {
-        const n = parseInt(r * 8) + parseInt(c);
+      for (let c = 0; c < 9; c++) {
+        const n = parseInt(r * 9) + parseInt(c);
         array.push(
           <div key={n}>
             <ColorCell
@@ -79,7 +82,7 @@ export default function ColorPallete(props) {
         style={{
           width: "50%",
           display: "grid",
-          gridTemplateColumns: "repeat(8, 1fr)",
+          gridTemplateColumns: "repeat(9, 1fr)",
           backgroundColor: "white",
           margin: "20px",
         }}

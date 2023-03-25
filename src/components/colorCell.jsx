@@ -21,7 +21,7 @@ export default function ColorCell(props) {
       <span
         style={{
           backgroundColor: props.cellColor,
-          border: props.cellColor === "#FFFFFF" ? "1px solid black" : "none",
+          border: props.cellColor === "#ffffff" ? "1px solid black" : "none",
         }}
         className={
           props.focus === props.cellNum ? "paint chosen-color" : "paint"
