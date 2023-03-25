@@ -31,7 +31,6 @@ function LoadImage() {
         alt="USU Bull Logo"
         width="400px"
         height="400px"
-        priority // lazy ,eager
       />
     </div>
   );

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CanvasComponent } from "@/components/canvasComponent";
-import { ColorBar } from "@/components/colorBar";
 import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
 import ColorPallete from "@/components/colorPallete";
@@ -54,14 +52,6 @@ export default function Canvas() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          setPalleteOpen(!palleteOpen);
-          console.log(!palleteOpen);
-        }}
-      >
-        Toggle
-      </button>
       <CheckboxArray
         grid={grid}
         focus={focus}
