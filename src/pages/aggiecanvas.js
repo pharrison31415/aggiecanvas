@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
 import ColorPallete from "@/components/colorPallete";
 import Toolbar from "@/components/toolbar";
+import Clock from "@/components/clock";
 
 export default function Canvas() {
   const [grid, setGrid] = useState([]);
@@ -60,6 +61,7 @@ export default function Canvas() {
         palleteOpen={palleteOpen}
         setPalleteOpen={setPalleteOpen}
       />
+      <Clock />
       <Toolbar />
       <ColorPallete
         grid={grid}

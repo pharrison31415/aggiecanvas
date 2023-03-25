@@ -57,7 +57,7 @@ export default function ColorPallete(props) {
         {colors.map(color => (
           <button value={color} onClick={onColorSelect}>
             <svg>
-              <rect width="50" height="50" rx="15" fill={color}/>  
+              <rect width="50" height="50" rx="15"yChannelSelector="" fill={color}/>  
             </svg>
           </button>
         ))}
