@@ -1,17 +1,36 @@
 import { useState } from "react";
+import Image from "next/image";
+import aggieBull from 'public/images/aggieBull.png'
 
 export default function Home() {
-  return (<div>
+  return (<div className="container-fluid text-light bgWrap" style={{backgroundColor: "#000057"}}>
             <h1>Aggie Canvas</h1>
+            <LoadImage />
             <AboutText />
             <Rules />
-            <SignIn />
+            <div className="container">
+              <SignIn />
+            </div>
           </div>  
           );
 }
 
+function LoadImage() {
+  return (
+    <div>
+      <image
+        src={aggieBull}
+        alt="USU Bull Logo"
+        width="250px"
+        height="250px"
+        priority // lazy ,eager
+      />
+    </div>
+  )
+}
+
 function AboutText() {
-  return (<p>Aggie Canvas is a campus wide event that will allow USU student to create art together. Once students have logged on this will be able to color one pixel a minute
+  return (<p className="w-50">Aggie Canvas is a campus wide event that will allow USU student to create art together. Once students have logged on this will be able to color one pixel a minute
     on an originally blank canvas. This project will allow students to work together or alone to create images of there choice. 
   </p>);
 }
@@ -20,12 +39,12 @@ function Rules() {
   return(
     <div>
       <h2>Rules: </h2>
-      <ul>
+      <ul className="w-50">
           <li>All participants must be current students in USU.</li>
           <li>Participants may not use their pixels to write out any profane and/or offensive language.</li>
           <li>Participants may not use their pixels to create inapropriate, crud, or offensive images.</li>
       </ul>
-      <p>If participants fail to abide by these rules they will be banned for 12 hours. If Participant is banned 3 times they will be banned permanently.</p>
+      <p className="w-50">If participants fail to abide by these rules they will be banned for 12 hours. If Participant is banned 3 times they will be banned permanently.</p>
     </div>);
 }
 
@@ -60,7 +79,10 @@ function SignIn() {
 
   return(
       <div>
-          <form onSubmit={handleSubmit}>
+          <h2>Login using your USU Eamil:</h2>
+          <form 
+            onSubmit={handleSubmit}
+            className="form-control-feedback has-success has-warning">
               <label>Email: 
                 <input 
                   type="email"
@@ -80,10 +102,11 @@ function SignIn() {
                 <p>  
                 <input type="checkbox"
                         name="checkBox"
+                        className="checkbox"
                         value={inputs.checkBox || false}
                         onClick={onCheckBoxClick}
                 />
-                  I have read and agree to abide by the rules listed above.
+                  &nbsp;&nbsp;&nbsp;I have read and agree to abide by the rules listed above.
                 </p>
                 <input type="submit" value="Submit" disabled={isDisabled}/>
           </form>
