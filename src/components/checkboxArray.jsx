@@ -8,6 +8,8 @@ export default function CheckboxArray(props) {
       for (let c in props.grid[r]) {
         row.push(
           <GridCell
+            focus={props.focus}
+            setFocus={props.setFocus}
             key={r * props.grid.length + c}
             cellNum={r * props.grid.length + c}
             setPalleteOpen={props.setPalleteOpen}

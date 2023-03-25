@@ -50,7 +50,7 @@ export default function Canvas() {
   }, []);
 
   const [palleteOpen, setPalleteOpen] = useState(false);
-  const [focusedCell, setFocusedCell] = useState(-1);
+  const [focus, setFocus] = useState(-1);
 
   return (
     <>
@@ -62,8 +62,18 @@ export default function Canvas() {
       >
         Toggle
       </button>
-      <CheckboxArray grid={grid} setPalleteOpen={setPalleteOpen} />
-      <ColorPallete palleteOpen={palleteOpen} setPalleteOpen={setPalleteOpen} />
+      <CheckboxArray
+        grid={grid}
+        focus={focus}
+        setFocus={setFocus}
+        setPalleteOpen={setPalleteOpen}
+      />
+      <ColorPallete
+        focus={focus}
+        setFocus={setFocus}
+        palleteOpen={palleteOpen}
+        setPalleteOpen={setPalleteOpen}
+      />
     </>
   );
 }

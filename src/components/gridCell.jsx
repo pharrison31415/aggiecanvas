@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 export default function GridCell(props) {
-  const [focused, setFocused] = useState(false);
-
   return (
     <label
       className="container"
@@ -13,10 +9,15 @@ export default function GridCell(props) {
       }}
     >
       <input
-        checked={focused}
+        checked={props.focus === props.cellNum}
         onChange={() => {
-          setFocused(!focused);
-          props.setPalleteOpen(!focused);
+          if (props.focus != props.cellNum) {
+            props.setFocus(props.cellNum);
+            props.setPalleteOpen(true);
+          } else {
+            props.setFocus(-1);
+            props.setPalleteOpen(false);
+          }
         }}
         type="checkbox"
       />

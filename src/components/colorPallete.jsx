@@ -14,6 +14,7 @@ export default function ColorPallete(props) {
     >
       <button
         onClick={() => {
+          props.setFocus(-1);
           props.setPalleteOpen(false);
         }}
       >
