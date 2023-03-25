@@ -9,6 +9,15 @@
   user-select: none;
 }
 
+.corner {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
 .container input {
   position: absolute;
   opacity: 0;

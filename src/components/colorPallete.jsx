@@ -64,21 +64,42 @@ export default function ColorPallete(props) {
         position: "fixed",
         height: "200px",
         bottom: "0",
-        width: "100%",
         display: "flex",
         justifyContent: "start",
         backgroundColor: "white",
       }}
     >
-      <button
-        onClick={() => {
-          props.setFocus(-1);
-          props.setPalleteOpen(false);
-        }}
-      >
-        Cancel
-      </button>
-      <div
+        <div className="corner">
+        <button className="btn btn-danger btn-lg"
+          onClick={() => {
+            props.setFocus(-1);
+            props.setPalleteOpen(false);
+          }}
+        >
+          X
+        </button>
+
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={selectedColor === -1}
+          onClick={() => {
+            props.setFocus(-1);
+            const l = props.grid[0].length;
+            axios
+              .post("/api/update", {
+                row: Math.floor(props.focus / l),
+                column: props.focus % l,
+                color: selectedColor,
+              })
+              .then((res) => {});
+            props.setPalleteOpen(false);
+          }}
+        >
+          OK
+        </button>
+      </div>
+
+      <div 
         style={{
           // width: "50%",
           display: "grid",
@@ -89,23 +110,7 @@ export default function ColorPallete(props) {
       >
         {buildColorCells()}
       </div>
-      <button
-        disabled={selectedColor === -1}
-        onClick={() => {
-          props.setFocus(-1);
-          const l = props.grid[0].length;
-          axios
-            .post("/api/update", {
-              row: Math.floor(props.focus / l),
-              column: props.focus % l,
-              color: selectedColor,
-            })
-            .then((res) => {});
-          props.setPalleteOpen(false);
-        }}
-      >
-        OK
-      </button>
+
     </div>
   );
 }
