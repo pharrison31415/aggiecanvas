@@ -2,7 +2,7 @@ import GridCell from "./gridCell";
 
 export default function CheckboxArray(props) {
   return (
-    <>
+    <div style={{ overflow: "auto", whiteSpace: "nowrap" }}>
       {props.grid.map((row) => {
         return (
           <div>
@@ -12,6 +12,6 @@ export default function CheckboxArray(props) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
