@@ -1,4 +1,3 @@
-/* The container */
 .container {
   /* display: block; */
   position: relative;
@@ -10,7 +9,6 @@
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
 .container input {
   position: absolute;
   opacity: 0;
@@ -19,22 +17,19 @@
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 0;
   left: 0;
   height: 35px;
   width: 35px;
-  background-color: #eee;
+  background-color: #ffffff;
 }
 
-/* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: #e2e2e2 !important;
 }
 
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196f3;
+.container input:checked ~ .selected {
+  background-color: #cecece !important;
 }

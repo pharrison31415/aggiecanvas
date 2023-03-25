@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CanvasComponent } from "@/components/canvasComponent";
-import { ColorBar } from "@/components/colorBar";
-import { Toolbar } from "@/components/toolbar";
 import "bootstrap/dist/css/bootstrap.css";
 import CheckboxArray from "@/components/checkboxArray";
+import ColorPallete from "@/components/colorPallete";
+import Toolbar from "@/components/toolbar";
 
 export default function Canvas() {
   const [grid, setGrid] = useState([]);
@@ -49,12 +48,26 @@ export default function Canvas() {
     }, 2000);
   }, []);
 
+  const [palleteOpen, setPalleteOpen] = useState(false);
+  const [focus, setFocus] = useState(-1);
+
   return (
     <>
-      {/* <CanvasComponent /> */}
-      {/* <Toolbar /> */}
-      <CheckboxArray grid={grid} />
-      {/* <ColorBar /> */}
+      <CheckboxArray
+        grid={grid}
+        focus={focus}
+        setFocus={setFocus}
+        palleteOpen={palleteOpen}
+        setPalleteOpen={setPalleteOpen}
+      />
+      <Toolbar />
+      <ColorPallete
+        grid={grid}
+        focus={focus}
+        setFocus={setFocus}
+        palleteOpen={palleteOpen}
+        setPalleteOpen={setPalleteOpen}
+      />
     </>
   );
 }
