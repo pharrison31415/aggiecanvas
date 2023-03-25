@@ -8,7 +8,7 @@ export class CanvasComponent extends Component {
   can;
   ctx;
   numofcells = 150;
-  cellsize = 10;
+  cellsize = 20;
   DPR;
 
 
@@ -22,7 +22,7 @@ export class CanvasComponent extends Component {
 
   componentDidMount() {
     this.DPR = window.devicePixelRatio;
-    this.cellsize = (window.innerWidth / this.numofcells);
+    // this.cellsize = (window.innerWidth / this.numofcells);
     this.can = document.getElementById("main_canvas");
     this.ctx = this.can.getContext('2d');
     this.can.width = this.size() * this.DPR;
@@ -36,14 +36,16 @@ export class CanvasComponent extends Component {
   }
 
   render() { 
-      return ( 
+      return (
+        <div id="main_div" style={{ overflowX: "scroll" }}>
         <canvas 
           id="main_canvas"
           onClick={(e) => {
-            this.draw(e.pageX, e.pageY);
+            this.draw(e.pageX + document.getElementById("main_div").scrollLeft, e.pageY);
           }}>
               Canvas Area
         </canvas>
+        </div>
       );
   }
 
@@ -64,6 +66,7 @@ export class CanvasComponent extends Component {
   }
 
   draw(x, y) {
+    console.log(document.getElementById("main_div").scrollLeft)
     let coords = this.getCanvasCoords(x, y);
     x = coords[0];
     y = coords[1];
