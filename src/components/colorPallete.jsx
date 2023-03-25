@@ -1,7 +1,59 @@
 import axios from "axios";
 import { useState } from "react";
+import ColorCell from "./colorCell";
 
 export default function ColorPallete(props) {
+  const colors = [
+    "#FFFFFF",
+    "#000000",
+    "#FF0000",
+    "#0000FF",
+    "#008000",
+    "#FFFF00",
+    "#800080",
+    "#FFA500",
+    "#FFC00B",
+    "#800000",
+    "#00FFFF",
+    "#A52A2A",
+    "#D2B48C",
+    "#EE82EE",
+    "#008080",
+    "#FF00FF",
+    "#87CEFA",
+    "#F08080",
+    "#FFD700",
+    "#FF1493",
+    "#8B0000",
+    "#00008B",
+    "#080808",
+    "#A9A9A9",
+  ];
+
+  const [focus, setFocus] = useState(-1);
+  const [selectedColor, setSelectedColor] = useState(-1);
+
+  const buildColorCells = () => {
+    let array = [];
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 8; c++) {
+        const n = parseInt(r * 8) + parseInt(c);
+        array.push(
+          <div key={n}>
+            <ColorCell
+              focus={focus}
+              setFocus={setFocus}
+              setSelectedColor={setSelectedColor}
+              cellNum={n}
+              cellColor={colors[n]}
+            />
+          </div>
+        );
+      }
+    }
+    return array;
+  };
+
   return (
     <div
       hidden={!props.palleteOpen}
@@ -23,9 +75,19 @@ export default function ColorPallete(props) {
       >
         Cancel
       </button>
-      <h2>PALLETE</h2>
-      <MakePalette />
+      <div
+        style={{
+          width: "50%",
+          display: "grid",
+          gridTemplateColumns: "repeat(8, 1fr)",
+          backgroundColor: "white",
+          margin: "20px",
+        }}
+      >
+        {buildColorCells()}
+      </div>
       <button
+        disabled={selectedColor === -1}
         onClick={() => {
           props.setFocus(-1);
           const l = props.grid[0].length;
@@ -33,7 +95,7 @@ export default function ColorPallete(props) {
             .post("/api/update", {
               row: Math.floor(props.focus / l),
               column: props.focus % l,
-              color: "#00ffff",
+              color: selectedColor,
             })
             .then((res) => {});
           props.setPalleteOpen(false);
@@ -43,25 +105,4 @@ export default function ColorPallete(props) {
       </button>
     </div>
   );
-
-  function MakePalette(){
-    const colors = ["#FFFFFF", "#000000", "#FF0000", "#0000FF", "#008000", "#FFFF00", "#800080", "#FFA500", "#FFC00B", "#800000", "#00FFFF", "#A52A2A", "#D2B48C", "#EE82EE", "#008080", "#FF00FF", "#87CEFA", "#F08080", "#FFD700", "#FF1493", "#8B0000", "#00008B", "#080808", "#A9A9A9"];
-    var colorButtonList = [];
-    const [color, setColor] = useState("");
-    const onColorSelect = (event) => {
-      setColor(event.target.value);
-    }
-  
-    return (
-      <div>
-        {colors.map(color => (
-          <button value={color} onClick={onColorSelect}>
-            <svg>
-              <rect width="50" height="50" rx="15"yChannelSelector="" fill={color}/>  
-            </svg>
-          </button>
-        ))}
-      </div>
-  )
-  }
 }

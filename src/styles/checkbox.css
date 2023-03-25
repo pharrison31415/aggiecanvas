@@ -17,7 +17,8 @@
   width: 0;
 }
 
-.checkmark {
+.checkmark,
+.paint {
   position: absolute;
   top: 0;
   left: 0;
@@ -32,4 +33,12 @@
 
 .container input:checked ~ .selected {
   background-color: #cecece !important;
+}
+
+.container:hover input ~ .paint {
+  border: 2px dotted grey !important;
+}
+
+.container input:checked ~ .chosen-color {
+  border: 2px solid black !important;
 }
