@@ -1,6 +1,7 @@
 export default function GridCell(props) {
   return (
     <label
+      id={`${props.r},${props.c}`}
       className="container"
       style={{
         margin: "-2.5px .5px",
