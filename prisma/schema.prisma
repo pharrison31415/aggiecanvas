@@ -11,7 +11,8 @@ datasource db {
 }
 
 model GridSnapshot {
-  id     Int  @id @default(autoincrement())
-  lastUpdate Int @db.Integer()
-  grid Json @db.Json()
+  id         Int  @id @default(autoincrement())
+  lastUpdate Int  @db.Integer()
+  grid       Json @db.Json()
 }
+
