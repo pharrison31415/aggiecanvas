@@ -46,8 +46,8 @@ export default function ColorPallete(props) {
 
   function MakePalette(){
     const [color, setColor] = useState("");
-    const onColorSelect = () => {
-      setColor(e.value);
+    const onColorSelect = (event) => {
+      setColor(event.target.value);
     }
     return (
     <div>
