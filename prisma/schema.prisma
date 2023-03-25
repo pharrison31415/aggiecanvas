@@ -28,7 +28,7 @@ model Update {
 
 model User {
   id           Int       @id @default(autoincrement())
-  email        String    @db.VarChar(64)
+  email        String    @db.VarChar(64) @unique
   passwordHash String    @db.VarChar(128)
   Updates      Update[]
   Sessions      Session[]
