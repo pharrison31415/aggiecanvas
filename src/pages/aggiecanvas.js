@@ -54,6 +54,7 @@ export default function Canvas() {
 
   return (
     <>
+    <Clock />
       <CheckboxArray
         grid={grid}
         focus={focus}
@@ -62,7 +63,6 @@ export default function Canvas() {
         setPalleteOpen={setPalleteOpen}
       />
       <Toolbar />
-      <Clock />
       <ColorPallete
         grid={grid}
         focus={focus}

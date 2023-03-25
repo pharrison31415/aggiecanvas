@@ -16,7 +16,7 @@ export default function Clock() {
     }, [togglePixel])
 
 		return (
-			<div style={{textAlign : "center"}}>
+			<div style={{backgroundColor: "#d3d3d3", textAlign: "center", marginLeft: "50%", position: "fixed", zIndex: 5, padding: "20px", borderWidth: "2px" , borderStyle: 'solid' ,borderRadius: "20px"}}>
 				<h2>Time until you can add another pixel: </h2>
 				<p>{count}</p>
 			</div>
