@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import axios from "axios";
+import { CanvasComponent } from "@/components/canvasComponent";
+import { ColorBar } from "@/components/colorBar";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Canvas() {
   useEffect(() => {
@@ -40,5 +43,10 @@ export default function Canvas() {
     }, 2000);
   }, []);
 
-  return <div>HELLO</div>;
+  return (
+    <>
+      <CanvasComponent />
+      <ColorBar />
+    </>
+  );
 }
