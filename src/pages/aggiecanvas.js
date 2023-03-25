@@ -64,7 +64,7 @@ export default function Canvas() {
         palleteOpen={palleteOpen}
         setPalleteOpen={setPalleteOpen}
       />
-      <Toolbar />
+      {/* <Toolbar /> */}
       <ColorPallete
         grid={grid}
         focus={focus}
