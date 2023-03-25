@@ -3,7 +3,7 @@ export default function GridCell(props) {
     <label
       className="container"
       style={{
-        margin: "-2px 1px",
+        margin: "-2.5px .5px",
         width: "35px",
         height: "35px",
       }}
