@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import GridCell from "./gridCell";
 
 export default function CheckboxArray(props) {

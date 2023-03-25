@@ -7,6 +7,7 @@ import Toolbar from "@/components/toolbar";
 
 export default function Canvas() {
   const [grid, setGrid] = useState([]);
+  const [changes, setChanges] = useState(0);
 
   useEffect(() => {
     axios.get("/api/grid-snapshot").then((gridResponse) => {
@@ -37,7 +38,8 @@ export default function Canvas() {
         .then((updatesResponse) => {
           window.lastUpdate = updatesResponse.data.lastUpdate;
           for (let u of updatesResponse.data.updates) {
-            console.log(u);
+            // console.log(u);
+            setChanges((c) => c + 1);
             window.grid[u.row][u.column] = u.color;
           }
           setGrid(window.grid);
@@ -45,8 +47,10 @@ export default function Canvas() {
         .catch((error) => {
           console.log(error);
         });
-    }, 2000);
+    }, 1000);
   }, []);
+
+  useEffect(() => {}, [changes]);
 
   const [palleteOpen, setPalleteOpen] = useState(false);
   const [focus, setFocus] = useState(-1);
