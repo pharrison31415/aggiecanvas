@@ -37,7 +37,7 @@ export const SignUp = () => {
           />
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onSubmit={handleSubmit} />
       </form>
     </div>
   );
