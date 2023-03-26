@@ -17,7 +17,7 @@ export default async (req, res) => {
     data: { grid: oldSnapshot.grid },
   });
 
-  await prisma.gridSnapshot.deleteMany({});
+  await prisma.update.deleteMany({});
 
   res.status(200).json({});
 };
