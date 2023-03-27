@@ -9,7 +9,7 @@ export default async (req, res) => {
     where: { clientIp: req.connection.remoteAddress },
   });
 
-  if (wait && new Date() - wait.created < 1000) {
+  if (wait && new Date() - wait.created < 2000) {
     res
       .status(400)
       .json({ message: "You need to wait some time before posting again." });
