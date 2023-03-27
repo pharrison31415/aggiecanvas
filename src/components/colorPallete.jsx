@@ -69,8 +69,9 @@ export default function ColorPallete(props) {
         backgroundColor: "white",
       }}
     >
-        <div className="corner">
-        <button className="btn btn-danger btn-lg"
+      <div className="corner">
+        <button
+          className="btn btn-danger btn-lg"
           onClick={() => {
             props.setFocus(-1);
             props.setPalleteOpen(false);
@@ -91,7 +92,9 @@ export default function ColorPallete(props) {
                 column: props.focus % l,
                 color: selectedColor,
               })
-              .then((res) => {});
+              .catch((error) => {
+                console.log(error);
+              });
             props.setPalleteOpen(false);
           }}
         >
@@ -99,9 +102,8 @@ export default function ColorPallete(props) {
         </button>
       </div>
 
-      <div 
+      <div
         style={{
-          // width: "50%",
           display: "grid",
           gridTemplateColumns: "repeat(9, 1fr)",
           backgroundColor: "white",
@@ -110,7 +112,6 @@ export default function ColorPallete(props) {
       >
         {buildColorCells()}
       </div>
-
     </div>
   );
 }

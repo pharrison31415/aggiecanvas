@@ -22,13 +22,11 @@ model Update {
   column    Int      @db.Integer()
   color     String   @db.VarChar(7)
   timeStamp DateTime @default(now())
-  // user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int      @db.Integer()
+  clientIp  String   @db.VarChar(32)
 }
 
-// model User {
-//   id           Int      @id @default(autoincrement())
-//   email        String   @db.VarChar(64)
-//   passwordHash String   @db.VarChar(128)
-//   Updates      Update[]
-// }
+model Waiting {
+  id       Int      @id @default(autoincrement())
+  clientIp String   @unique @db.VarChar(32)
+  created  DateTime @default(now())
+}
