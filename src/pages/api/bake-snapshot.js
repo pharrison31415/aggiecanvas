@@ -1,20 +1,22 @@
 import { prisma } from "../../../utils/db-client";
 
 export default async (req, res) => {
-  const oldSnapshot = await prisma.gridSnapshot.findFirst({
-    orderBy: { lastUpdate: "desc" },
-  });
+  const oldGrid = (
+    await prisma.gridSnapshot.findFirst({
+      orderBy: { lastUpdate: "desc" },
+    })
+  ).grid;
 
   const updates = await prisma.update.findMany({
-    where: { timeStamp: { gt: new Date() } },
+    where: { timeStamp: { lt: new Date() } },
   });
 
   for (let u of updates) {
-    oldSnapshot.grid[u.row][u.column] = u.color;
+    oldGrid[u.row][u.column] = u.color;
   }
 
   await prisma.gridSnapshot.create({
-    data: { grid: oldSnapshot.grid },
+    data: { grid: oldGrid },
   });
 
   await prisma.update.deleteMany({});
