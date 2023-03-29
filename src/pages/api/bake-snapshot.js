@@ -1,6 +1,11 @@
 import { prisma } from "../../../utils/db-client";
 
 export default async (req, res) => {
+  if (req.connection.remoteAddress != "129.123.254.123") {
+    req.status(401).json({ message: "You are not authorized to do that" });
+    return;
+  }
+
   const oldGrid = (
     await prisma.gridSnapshot.findFirst({
       orderBy: { lastUpdate: "desc" },
