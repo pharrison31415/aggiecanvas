@@ -56,7 +56,6 @@ export default function Canvas() {
 
   return (
     <>
-      <h1>Yall are gonna lose privileges soon. plz stop botting.</h1>
       <CheckboxArray
         grid={grid}
         focus={focus}
