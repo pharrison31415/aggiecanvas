@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - database
+    depends_on:
+      - db
+    env_file:
+      - .env
+    restart: always
+    container_name: aggiecanvas-server
+    hostname: server
+    ports: 
+      - 22334:80
+
+  db:
+    image: postgres:15.1
+    networks:
+      - database
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    restart: always
+    env_file:
+      - .env
+    container_name: aggiecanvas-db
+    hostname: db
+
+volumes:
+  pgdata:
+
+networks:
+  database:
+    driver: bridge
