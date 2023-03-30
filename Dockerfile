@@ -26,4 +26,6 @@ COPY --from=build  /app/.next /app/.next
 COPY --from=build  /app/public /app/public
 COPY --from=build  /app/prisma /app/prisma
 
+RUN echo "*/20 * * * * /bin/sh echo -e 'GET /api/bake-snapshot HTTP/1.1\r\n\r\n' | nc localhost 80" >> /var/spool/cron/crontabs/root
+
 CMD ["npm", "run", "prod"]

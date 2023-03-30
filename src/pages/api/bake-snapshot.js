@@ -1,8 +1,10 @@
 import { prisma } from "../../../utils/db-client";
 
+const ALLOWED_IPS = new Set(["129.123.254.123", "127.0.0.1"]);
+
 export default async (req, res) => {
-  if (req.connection.remoteAddress != "129.123.254.123") {
-    req.status(401).json({ message: "You are not authorized to do that" });
+  if (!ALLOWED_IPS.has(req.connection.remoteAddress)) {
+    res.status(401).json({ message: "You are not authorized to do that" });
     return;
   }
 
