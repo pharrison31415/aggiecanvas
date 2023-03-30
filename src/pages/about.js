@@ -16,9 +16,6 @@ export default function Home() {
       <LoadImage />
       <AboutText />
       <Rules />
-      {/* <div className="container">
-        <SignIn />
-      </div> */}
     </div>
   );
 }

@@ -1,8 +1,6 @@
 import { prisma } from "../../../utils/db-client";
 
 export default async (req, res) => {
-  // console.log(req.connection.remoteAddress);
-
   const { row, column, color } = req.body;
 
   const wait = await prisma.waiting.findFirst({

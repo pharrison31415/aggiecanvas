@@ -13,7 +13,6 @@ export default async (req, res) => {
         color: u.color,
         timeStamp: u.timeStamp,
       };
-      // return ({ row, column, color, timeStamp } = u);
     }),
     lastUpdate: new Date().toISOString(),
   });
